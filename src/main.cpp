@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <GL/glew.h>
 #include <iostream>
+#include <cmath>
 
 const char* vertexShaderSource = R"(
 #version 330 core
@@ -114,6 +115,7 @@ int main(int argc, char* argv[]) {
 
     bool quit = false;
     SDL_Event e;
+    float angle = 0.0f;
     while (!quit) {
         while (SDL_PollEvent(&e) != 0) {
             if (e.type == SDL_QUIT) {
@@ -122,6 +124,18 @@ int main(int argc, char* argv[]) {
         }
 
         glClear(GL_COLOR_BUFFER_BIT);
+
+        // Update vertex positions for animation
+        angle += 0.01f;
+        vertices[0] = -0.5f * std::cos(angle);
+        vertices[1] = -0.5f * std::sin(angle);
+        vertices[3] = 0.5f * std::cos(angle);
+        vertices[4] = -0.5f * std::sin(angle);
+        vertices[6] = 0.0f * std::cos(angle);
+        vertices[7] = 0.5f * std::sin(angle);
+
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
 
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO);
