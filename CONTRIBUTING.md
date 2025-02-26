@@ -1,33 +1,95 @@
 # Contributing to Juster
 
-## How to Contribute
+Thank you for your interest in contributing to Juster! Since we're in early development, your contributions can have a significant impact on the project's direction and success.
 
-Thank you for considering contributing to Juster! We welcome contributions from everyone. Here are some guidelines to help you get started:
+## Development Status
 
-1. Fork the repository and create your branch from `main`.
-2. If you've added code that should be tested, add tests.
-3. If you've changed APIs, update the documentation.
-4. Ensure the test suite passes.
-5. Make sure your code lints.
-6. Issue that pull request!
+As of February 2025, Juster is in early development. This means:
+
+- The codebase is evolving quickly
+- APIs and architecture may change substantially
+- There are many opportunities to influence the project direction
+
+## How Can I Contribute?
+
+### Code Contributions
+
+1. Fork the repository
+2. Create a new branch from `main`:
+   ```
+   git checkout -b feature/your-feature-name
+   ```
+   or
+   ```
+   git checkout -b bugfix/issue-description
+   ```
+3. Make your changes
+4. Commit your changes with clear, descriptive messages
+5. Push to your fork
+6. Submit a pull request to the `main` branch
+
+### Current Development Priorities
+
+- Core rendering engine
+- UI framework implementation
+- Timeline system
+- File format design
+- Tool system architecture
+
+### Design Contributions
+
+We welcome input on:
+- User interface design
+- User experience workflows
+- Logo and branding
+- Feature requirements
+
+### Documentation
+
+- Help document the architecture and APIs as they evolve
+- Create tutorials and examples
+- Improve README and other documentation files
+
+## Development Setup
+
+Follow the [Building from Source](README.md#building-from-source) instructions in the README.
+
+### Dependencies
+
+- C++17 compatible compiler
+- CMake 3.15 or higher
+- OpenGL 3.3+
 
 ## Coding Standards
 
-To maintain consistency and readability in the codebase, please adhere to the following coding standards:
+### C++ Style Guide
 
-- Use 4 spaces for indentation.
-- Write clear and concise comments.
-- Follow the naming conventions for variables, functions, and classes.
-- Keep functions and methods small and focused on a single task.
-- Write unit tests for new features and bug fixes.
+- Use 4 spaces for indentation
+- Follow the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) with the following exceptions:
+  - Use `.cpp` and `.hpp` file extensions
+  - Use `#pragma once` for header guards
+- Keep lines under 100 characters when possible
+- Document your code using Doxygen-style comments
 
-## Pull Request Guidelines
+## Project Structure
 
-When submitting a pull request, please follow these guidelines:
+```
+Juster/
+├── src/                  # Source files
+│   ├── core/             # Core engine functionality
+│   ├── gui/              # User interface components
+│   ├── animation/        # Animation engine
+│   └── renderer/         # Rendering components
+├── include/              # Public headers
+├── resources/            # Icons, shaders, etc.
+├── docs/                 # Documentation
+└── tests/                # Tests (when we have them)
+```
 
-1. Provide a clear and descriptive title for the pull request.
-2. Include a summary of the changes and the motivation behind them.
-3. Reference any related issues or pull requests.
-4. Ensure that your code follows the coding standards mentioned above.
-5. Make sure all tests pass before submitting the pull request.
-6. Be responsive to feedback and be prepared to make changes to your code.
+## Communication
+
+- Open an issue for discussions about features or bugs
+- Tag issues with appropriate labels
+
+Thank you for helping build Juster!
+```
