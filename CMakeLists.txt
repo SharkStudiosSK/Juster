@@ -13,9 +13,31 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find required packages
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(SDL2 REQUIRED sdl2)
+
+# Check for SDL2
+pkg_check_modules(SDL2 sdl2)
+if(NOT SDL2_FOUND)
+    message(FATAL_ERROR 
+        "SDL2 not found! Please install the SDL2 development package:\n"
+        "  Ubuntu/Debian: sudo apt install libsdl2-dev\n"
+        "  Fedora/CentOS: sudo dnf install SDL2-devel\n"
+        "  macOS: brew install sdl2\n"
+        "  Windows: Download from https://libsdl.org/")
+endif()
+
+# Check for OpenGL
 find_package(OpenGL REQUIRED)
-find_package(GLEW REQUIRED)
+
+# Check for GLEW
+find_package(GLEW)
+if(NOT GLEW_FOUND)
+    message(FATAL_ERROR 
+        "GLEW not found! Please install the GLEW development package:\n"
+        "  Ubuntu/Debian: sudo apt install libglew-dev\n"
+        "  Fedora/CentOS: sudo dnf install glew-devel\n"
+        "  macOS: brew install glew\n"
+        "  Windows: Download from http://glew.sourceforge.net/")
+endif()
 
 # Include directories
 include_directories(

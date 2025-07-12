@@ -52,6 +52,30 @@ Check out our [Contributing Guidelines](CONTRIBUTING.md) to get started.
 - CMake 3.15 or higher
 - OpenGL 3.3+ compatible graphics card
 
+### Required Dependencies
+
+Before building, install the required development packages:
+
+**Ubuntu/Debian:**
+```bash
+sudo apt update
+sudo apt install libsdl2-dev libglew-dev
+```
+
+**Fedora/CentOS:**
+```bash
+sudo dnf install SDL2-devel glew-devel
+```
+
+**macOS:**
+```bash
+brew install sdl2 glew
+```
+
+**Windows:**
+- Download SDL2 development libraries from [libsdl.org](https://libsdl.org/)
+- Download GLEW from [glew.sourceforge.net](http://glew.sourceforge.net/)
+
 ### Building from Source
 
 ```bash
