@@ -18,7 +18,7 @@ Juster aims to be a free, open-source, community-maintained animation software d
 
 As of February 2025, Juster is in the early development stage. We are:
 
-- [ ] Setting up the core architecture
+- [x] Setting up the core architecture
 - [ ] Implementing the basic rendering engine
 - [ ] Designing the user interface
 - [ ] Building the animation timeline system
@@ -59,6 +59,10 @@ Check out our [Contributing Guidelines](CONTRIBUTING.md) to get started.
 git clone https://github.com/SharkStudiosSK/Juster.git
 cd Juster
 
+# Option 1: Use the build script (recommended)
+./build.sh
+
+# Option 2: Manual build
 # Create build directory
 mkdir build && cd build
 
