@@ -43,6 +43,8 @@ endif()
 include_directories(
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/third_party/imgui
+    ${CMAKE_SOURCE_DIR}/third_party/imgui/backends
     ${SDL2_INCLUDE_DIRS}
     ${OPENGL_INCLUDE_DIRS}
     ${GLEW_INCLUDE_DIRS}
@@ -54,6 +56,19 @@ add_executable(${PROJECT_NAME}
     src/Application.cpp
     src/Window.cpp
     src/Renderer.cpp
+    src/UI/UIManager.cpp
+    src/UI/MainMenuUI.cpp
+    src/Animation/Project.cpp
+    src/Animation/Timeline.cpp
+    src/Animation/AnimationTools.cpp
+    # Dear ImGui sources
+    third_party/imgui/imgui.cpp
+    third_party/imgui/imgui_demo.cpp
+    third_party/imgui/imgui_draw.cpp
+    third_party/imgui/imgui_tables.cpp
+    third_party/imgui/imgui_widgets.cpp
+    third_party/imgui/backends/imgui_impl_sdl2.cpp
+    third_party/imgui/backends/imgui_impl_opengl3.cpp
 )
 
 # Link libraries

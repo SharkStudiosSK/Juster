@@ -1,6 +1,10 @@
 #pragma once
 
+#include <memory>
+
 namespace Juster {
+
+class UIManager;
 
 /**
  * @brief Core application class that manages the main application lifecycle
@@ -30,6 +34,11 @@ public:
      */
     static Application& getInstance();
 
+    /**
+     * @brief Request application to quit
+     */
+    void requestQuit() { m_isRunning = false; }
+
 private:
     Application() = default;
     ~Application() = default;
@@ -40,6 +49,8 @@ private:
 
     bool m_isInitialized = false;
     bool m_isRunning = false;
+    
+    std::unique_ptr<UIManager> m_uiManager;
 };
 
 } // namespace Juster
