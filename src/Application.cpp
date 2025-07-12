@@ -1,6 +1,8 @@
 #include "juster/Application.h"
 #include "juster/Window.h"
 #include "juster/Renderer.h"
+#include "juster/UI/UIManager.h"
+#include "juster/UI/MainMenuUI.h"
 #include <iostream>
 #include <SDL2/SDL.h>
 
@@ -22,6 +24,9 @@ bool Application::initialize() {
         return false;
     }
 
+    // Initialize UI Manager
+    m_uiManager = std::make_unique<UIManager>();
+
     m_isInitialized = true;
     return true;
 }
@@ -33,7 +38,7 @@ int Application::run() {
     }
 
     Window window;
-    if (!window.create("Juster")) {
+    if (!window.create("Juster - Animation Software")) {
         std::cerr << "Failed to create window!" << std::endl;
         return 1;
     }
@@ -44,24 +49,54 @@ int Application::run() {
         return 1;
     }
 
+    // Initialize UI
+    if (!m_uiManager->initialize(&window)) {
+        std::cerr << "Failed to initialize UI!" << std::endl;
+        return 1;
+    }
+
+    // Setup UI callbacks
+    auto* mainMenu = m_uiManager->getMainMenu();
+    if (mainMenu) {
+        mainMenu->setCallbacks(
+            []() { std::cout << "New project created!" << std::endl; },
+            []() { std::cout << "Open project requested!" << std::endl; },
+            []() { std::cout << "Save project requested!" << std::endl; },
+            [this]() { requestQuit(); }
+        );
+    }
+
     m_isRunning = true;
     SDL_Event event;
 
     while (m_isRunning) {
         // Handle events
         while (SDL_PollEvent(&event) != 0) {
-            if (event.type == SDL_QUIT) {
-                m_isRunning = false;
+            // Let UI handle events first
+            bool eventConsumed = m_uiManager->processEvent(event);
+            
+            if (!eventConsumed) {
+                if (event.type == SDL_QUIT) {
+                    m_isRunning = false;
+                }
             }
         }
 
-        // Render
+        // Start UI frame
+        m_uiManager->newFrame();
+
+        // Clear screen
         renderer.clear();
-        renderer.renderTestTriangle();
+
+        // Render UI
+        m_uiManager->render();
+
+        // Present frame
         renderer.present();
     }
 
     // Cleanup
+    m_uiManager->shutdown();
     renderer.shutdown();
     window.destroy();
 
@@ -70,6 +105,7 @@ int Application::run() {
 
 void Application::shutdown() {
     if (m_isInitialized) {
+        m_uiManager.reset();
         SDL_Quit();
         m_isInitialized = false;
     }
