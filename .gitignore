@@ -1,0 +1,45 @@
+# Build directories
+build/
+dist/
+bin/
+obj/
+
+# IDE files
+.vscode/
+.vs/
+*.vcxproj*
+*.sln
+*.suo
+*.user
+
+# CMake files (in root)
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# Debug files
+*.pdb
+*.dSYM/
+
+# Temporary files
+*.tmp
+*.temp
+*~
+.DS_Store
+Thumbs.db
+
+# Package managers
+vcpkg_installed/
+conan_cache/
+
+# Logs
+*.log
